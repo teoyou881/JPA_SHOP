@@ -1,8 +1,6 @@
 package JPA_SHOP.JPA_SHOP.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import JPA_SHOP.JPA_SHOP.entity.Member;
+import JPA_SHOP.JPA_SHOP.Domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
