@@ -4,13 +4,15 @@ import JPA_SHOP.JPA_SHOP.Domain.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
   @PersistenceContext
-  private EntityManager em;
+  private final EntityManager em;
 
   public Long save(Member member) {
     em.persist(member);
@@ -27,9 +29,9 @@ public class MemberRepository {
         .getResultList();
   }
 
-  public List<Member> findByName(String name) {
-    return em.createQuery("select m from Member m where m.name = :name", Member.class)
-        .setParameter("name", name)
+  public List<Member> findByName(String username) {
+    return em.createQuery("select m from Member m where m.username = :username", Member.class)
+        .setParameter("username", username)
         .getResultList();
   }
 }
