@@ -1,6 +1,6 @@
 package JPA_SHOP.JPA_SHOP.repository;
 
-import JPA_SHOP.JPA_SHOP.Domain.Member;
+import JPA_SHOP.JPA_SHOP.domain.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;

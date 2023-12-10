@@ -1,6 +1,6 @@
 package JPA_SHOP.JPA_SHOP.service;
 
-import JPA_SHOP.JPA_SHOP.Domain.Member;
+import JPA_SHOP.JPA_SHOP.domain.Member;
 import JPA_SHOP.JPA_SHOP.repository.MemberRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

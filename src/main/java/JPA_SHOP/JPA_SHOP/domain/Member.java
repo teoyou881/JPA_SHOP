@@ -1,4 +1,4 @@
-package JPA_SHOP.JPA_SHOP.Domain;
+package JPA_SHOP.JPA_SHOP.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

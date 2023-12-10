@@ -1,6 +1,6 @@
-package JPA_SHOP.JPA_SHOP.Domain;
+package JPA_SHOP.JPA_SHOP.domain;
 
-import JPA_SHOP.JPA_SHOP.Domain.item.Item;
+import JPA_SHOP.JPA_SHOP.domain.item.Item;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

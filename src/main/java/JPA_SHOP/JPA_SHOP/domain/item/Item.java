@@ -1,8 +1,9 @@
-package JPA_SHOP.JPA_SHOP.Domain.item;
+package JPA_SHOP.JPA_SHOP.domain.item;
 
 
-import JPA_SHOP.JPA_SHOP.Domain.Category;
-import JPA_SHOP.JPA_SHOP.Domain.OrderItem;
+import JPA_SHOP.JPA_SHOP.domain.Category;
+import JPA_SHOP.JPA_SHOP.domain.OrderItem;
+import JPA_SHOP.JPA_SHOP.exception.NotEnoughStockException;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
@@ -40,7 +41,19 @@ public abstract class Item {
   private List<Category> categories = new ArrayList<>();
 
   @OneToMany(mappedBy = "item")
-  private List<OrderItem> category = new ArrayList<>();
+  private List<OrderItem> orderItems = new ArrayList<>();
 
+  // === Business logic === //
+  public void addStock(int quantity) {
+    this.stockQuantity += quantity;
+  }
+
+  public void removeStock(int quantity) {
+    int restStock = this.stockQuantity - quantity;
+    if (restStock < 0) {
+      throw new NotEnoughStockException("need more stock");
+    }
+    this.stockQuantity = restStock;
+  }
 
 }
