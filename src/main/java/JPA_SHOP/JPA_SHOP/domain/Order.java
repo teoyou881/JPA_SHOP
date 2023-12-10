@@ -13,18 +13,18 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "ORDERS")
 @Getter
 @Setter
-@Transactional
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class Order {
 
   @Id
