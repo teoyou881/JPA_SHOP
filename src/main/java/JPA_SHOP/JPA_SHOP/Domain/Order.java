@@ -1,5 +1,6 @@
 package JPA_SHOP.JPA_SHOP.Domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,14 +33,14 @@ public class Order {
   private Long id;
 
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "member_id")
   private Member member;
 
-  @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<OrderItem> orderItems = new ArrayList<>();
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "delivery_id")
   private Delivery delivery;
 
@@ -47,4 +48,20 @@ public class Order {
 
   @Enumerated(EnumType.STRING)
   private OrderStatus status;
+
+  // === Relational convenience methods === //
+  public void setMember(Member member) {
+    this.member = member;
+    member.getOrders().add(this);
+  }
+
+  public void addOrderItem(OrderItem orderItem) {
+    orderItems.add(orderItem);
+    orderItem.setOrder(this);
+  }
+
+  public void setDelivery(Delivery delivery) {
+    this.delivery = delivery;
+    delivery.setOrder(this);
+  }
 }
