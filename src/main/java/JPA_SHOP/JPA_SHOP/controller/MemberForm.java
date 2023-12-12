@@ -2,13 +2,13 @@ package JPA_SHOP.JPA_SHOP.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.lang.NonNull;
 
 @Getter
 @Setter
 public class MemberForm {
 
-  @NotNull
+  @NonNull
   private String username;
   private String street;
   private String country;
