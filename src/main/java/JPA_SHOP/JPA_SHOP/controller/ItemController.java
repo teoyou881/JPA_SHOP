@@ -56,10 +56,10 @@ public class ItemController {
 
   @PostMapping("/items/{itemId}/edit")
   public String updateItem(@ModelAttribute BookForm form) {
-    Book book = Book.createBookForm(form.getId(), form.getName(), form.getPrice(),
-        form.getStockQuantity(),
-        form.getAuthor(), form.getIsbn());
-    itemService.saveItem(book);
+
+    itemService.updateItem(form.getId(), form.getName(), form.getPrice(), form.getStockQuantity());
+    
     return "redirect:/items";
+
   }
 }
