@@ -36,4 +36,10 @@ public class MemberService {
       throw new IllegalStateException("name already exists.");
     }
   }
+
+  @Transactional
+  public void update(Long id, String username) {
+    Member member = memberRepository.findOne(id);
+    member.setUsername(username);
+  }
 }
