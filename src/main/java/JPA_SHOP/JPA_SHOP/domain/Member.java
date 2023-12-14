@@ -1,5 +1,6 @@
 package JPA_SHOP.JPA_SHOP.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -27,6 +28,7 @@ public class Member {
   @Embedded
   private Address address;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
   private List<Order> orders = new ArrayList<>();
 

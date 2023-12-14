@@ -1,6 +1,7 @@
 package JPA_SHOP.JPA_SHOP.domain;
 
 import JPA_SHOP.JPA_SHOP.domain.item.Item;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,11 +25,11 @@ public class OrderItem {
   @Column(name = "order_item_id")
   private Long id;
 
-
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "item_id")
   private Item item;
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "order_id")
   private Order order;
