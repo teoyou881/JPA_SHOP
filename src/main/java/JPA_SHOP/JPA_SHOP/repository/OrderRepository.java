@@ -1,6 +1,7 @@
 package JPA_SHOP.JPA_SHOP.repository;
 
 import JPA_SHOP.JPA_SHOP.domain.Order;
+import JPA_SHOP.JPA_SHOP.dto.SimpleOrderDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -28,7 +29,6 @@ public class OrderRepository {
     return em.find(Order.class, id);
   }
 
-
   /*
    * JPA Criteria
    * */
@@ -54,5 +54,23 @@ public class OrderRepository {
     TypedQuery<Order> query = em.createQuery(cq).setMaxResults(100);
     return query.getResultList();
 
+  }
+
+  public List<Order> findAllWithMemberDelivery() {
+    return em.createQuery(
+        "select o from Order o" +
+            " join fetch o.member m" +
+            " join fetch o.delivery d", Order.class
+    ).getResultList();
+  }
+
+  public List<SimpleOrderDTO> findOrderDTOs() {
+    return em.createQuery(
+        "select new JPA_SHOP.JPA_SHOP.dto.SimpleOrderDTO(o.id, m.username, o.orderDatetime, o.status, d.address) "
+            +
+            "from Order o " +
+            "join o.member m " +
+            "join o.delivery d", SimpleOrderDTO.class
+    ).getResultList();
   }
 }

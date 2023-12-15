@@ -38,10 +38,22 @@ public class OrderSimpleApiController {
   @GetMapping("/api/v2/simple-orders")
   public List<SimpleOrderDTO> ordersV2() {
     List<Order> all = orderRepository.findAllByCriteria(new OrderSearch());
-    List<SimpleOrderDTO> result = all.stream()
-                                      .map(SimpleOrderDTO::new)
-                                      .collect(Collectors.toList());
-    return result;
+    return all.stream()
+              .map(SimpleOrderDTO::new)
+              .collect(Collectors.toList());
+  }
+
+  @GetMapping("/api/v3/simple-orders")
+  public List<SimpleOrderDTO> ordersV3() {
+    List<Order> all = orderRepository.findAllWithMemberDelivery();
+    return all.stream()
+              .map(SimpleOrderDTO::new)
+              .collect(Collectors.toList());
+  }
+
+  @GetMapping("/api/v4/simple-orders")
+  public List<JPA_SHOP.JPA_SHOP.dto.SimpleOrderDTO> ordersV4() {
+    return orderRepository.findOrderDTOs();
   }
 
   @Data
@@ -59,5 +71,6 @@ public class OrderSimpleApiController {
       orderDate = order.getOrderDatetime();
       orderStatus = order.getStatus();
       address = order.getDelivery().getAddress();
+    }
   }
 }
